@@ -28,7 +28,7 @@ buttons.forEach(e =>
     ) //на кожну кнопку меню вішаємо івент, в якому посилаємо запит 
 
 fetch(`${URL}films`).then(response => response.json())
-    .then(data => drawElements(1, data.results)); // щоб сторінка не була пуста, перший раз загружаємо вручну .
+    .then(data => showInfo(data.results)); // щоб сторінка не була пуста, перший раз загружаємо вручну .
 
 
 
