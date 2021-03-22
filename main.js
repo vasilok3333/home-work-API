@@ -21,7 +21,7 @@ submit.addEventListener("click", (evt) => {
 
 buttons.forEach(e =>
         e.addEventListener("click", (evt) => {
-            let path = evt.path[2].id;
+            let path = evt.currentTarget.id;
             fetch(`${URL}${path}`).then(response => response.json())
                 .then(data => showInfo(data.results))
         })
