@@ -14,7 +14,7 @@ const URL = "https://swapi.dev/api/";
 submit.addEventListener("click", (evt) => {
         evt.preventDefault();
         let search = input.value.toLowerCase();
-        fetch(`https://swapi.dev/api/people/?search=${search}`).then(response => response.json())
+        fetch(`${URL}people/?search=${search}`).then(response => response.json())
             .then(data => showInfo(data.results))
     }) // на кнопку сабміту вішаємо івент. Однак я не зрозумів, як по цілому сайті зробити пошук ????? 
 
