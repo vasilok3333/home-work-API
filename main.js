@@ -9,7 +9,7 @@ let submit = document.querySelector(".submit");
 
 
 
-const URL = "http://swapi.dev/api/";
+const URL = "https://swapi.dev/api/";
 
 submit.addEventListener("click", (evt) => {
         evt.preventDefault();
