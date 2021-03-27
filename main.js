@@ -13,22 +13,35 @@ const URL = "https://swapi.dev/api/";
 
 submit.addEventListener("click", (evt) => {
         evt.preventDefault();
-        let search = input.value.toLowerCase();
-        fetch(`https://swapi.dev/api/people/?search=${search}`).then(response => response.json())
+    let search = input.value.toLowerCase();
+    
+    let category = Array.from(buttons).filter(e => e.classList.contains("active"))[0].id;
+    console.log(category)
+        fetch(`${URL}${category}/?search=${search}`).then(response => response.json())
             .then(data => showInfo(data.results))
     }) // на кнопку сабміту вішаємо івент. Однак я не зрозумів, як по цілому сайті зробити пошук ????? 
 
 
+function addActiveMenuItem(evt) {
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active")
+    }
+    evt.currentTarget.classList.add("active")
+}
+
+
 buttons.forEach(e =>
-        e.addEventListener("click", (evt) => {
-            let path = evt.path[2].id;
+    e.addEventListener("click", (evt) => {
+      
+            let path = evt.currentTarget.id;
+        addActiveMenuItem(evt);
             fetch(`${URL}${path}`).then(response => response.json())
                 .then(data => showInfo(data.results))
         })
     ) //на кожну кнопку меню вішаємо івент, в якому посилаємо запит 
 
 fetch(`${URL}films`).then(response => response.json())
-    .then(data => drawElements(1, data.results)); // щоб сторінка не була пуста, перший раз загружаємо вручну .
+    .then(data => showInfo(data.results)); // щоб сторінка не була пуста, перший раз загружаємо вручну .
 
 
 
@@ -41,6 +54,7 @@ function showInfo(data) {
     for (let i = 1; i <= pages; i++) {
         let li = document.createElement("li");
         li.innerHTML = i;
+        li.classList.add('pagination__item');
         pagination.append(li);
         items.push(li);
     }
@@ -53,10 +67,21 @@ function showInfo(data) {
     for (let i = 0; i < items.length; i++) {
 
         items[i].addEventListener("click", (evt) => {
+            
+            addActivePaginationItem(evt);
             let pageNum = +evt.currentTarget.innerHTML;
             drawElements(pageNum, data)
         })
     } // на кожну кнопку пагінації вішаємо івент, щоб перейти на відповідну сторінку
+}
+
+function addActivePaginationItem(evt) {
+    let pagination__items = document.querySelectorAll('.pagination__item')
+    
+    for (let i = 0; i < pagination__items.length; i++) {
+        pagination__items[i].classList.remove('active');
+    }
+    evt.currentTarget.classList.add('active');
 }
 
 function drawElements(page, data) {

@@ -95,6 +95,8 @@ body {
     border-left: 1px solid goldenrod;
 }
 
+
+
 .header__menu li:last-child {
     border-right: 1px solid goldenrod;
 }
@@ -114,9 +116,11 @@ body {
     cursor: pointer;
 }
 
-.header__menu-items li.active {
+.header__menu-items li.active a {
     color: goldenrod;
 }
+
+
 
 .main__section {
     margin: 40px 300px;
@@ -130,7 +134,7 @@ body {
     list-style: none;
 }
 
-.pagination li {
+.pagination__item {
     border: 1px solid goldenrod;
     padding: 5px;
     background-color: inherit;
@@ -140,7 +144,11 @@ body {
     border-radius: 50%;
 }
 
-.pagination li:hover {
+.pagination__item.active {
+    background-color: rgba(218, 165, 34, 0.473);
+}
+
+.pagination__item:hover {
     cursor: pointer;
     border: 1px solid green;
 }
@@ -164,11 +172,17 @@ body {
     justify-content: space-around;
     text-align: center;
     margin-bottom: 20px;
+    background-color: rgba(218, 165, 34, 0.473);
 }
 
 .btn__info {
     border: 1px solid white;
     cursor: pointer;
+    width: 100px;
+    margin: 0 auto;
+    background-color: rgb(6, 24, 83);
+    border-radius: 20px;
+    
 }
 
 .item__info {
