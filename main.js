@@ -16,7 +16,7 @@ submit.addEventListener("click", (evt) => {
     let search = input.value.toLowerCase();
     
     let category = Array.from(buttons).filter(e => e.classList.contains("active"))[0].id;
-    console.log(category)
+ 
         fetch(`${URL}${category}/?search=${search}`).then(response => response.json())
             .then(data => showInfo(data.results))
     }) // на кнопку сабміту вішаємо івент. Однак я не зрозумів, як по цілому сайті зробити пошук ????? 
